@@ -32,8 +32,8 @@ wget http://mirrors.jenkins.io/war/${jenkins_latest}/jenkins.war
 wget http://mirrors.jenkins.io/war/${jenkins_latest}/jenkins.war.sha256
 
 # Veify sha256. It is the first sequence before one or more spaces.
-expected_sha256_hash=$(cat jenkins.war.sha256 | awk '{ print $1 }')
-sha256_hash=`sha256sum jenkins.war | awk '{ print $1 }'`
+expected_sha256_hash=$(awk '{ print $1 }' jenkins.war.sha256)
+sha256_hash=$(sha256sum jenkins.war | awk '{ print $1 }')
 
 if [ "$expected_sha256_hash" == "$sha256_hash" ]; then
     echo "sha256 valid"
